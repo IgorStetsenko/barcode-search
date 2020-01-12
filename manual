@@ -1,0 +1,5 @@
+python3 barcode.py photo/5.png i
+
+o - save image
+i - show image
+t - time work
