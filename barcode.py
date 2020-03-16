@@ -11,6 +11,11 @@ import numpy as np
 
 
 def read_photo(path_to_image):  # read photo
+    '''
+    :param path_to_image:This function open the foto and use parameter path_to_image.
+    If path or format of the photo incorrect function return warning.
+    :return: Function return the read photo.
+    '''
     if os.path.isfile(path_to_image):
         try:
             image_test = cv2.imread(path_to_image, 0)
@@ -23,12 +28,24 @@ def read_photo(path_to_image):  # read photo
 
 
 def filter_image(image_test):
+    '''
+    :param image_test: This function use parameter image_test.
+    Use operation the blur-filter and the binarisation.
+    :return: Function return image threshold in range 150:255
+    '''
     blur = cv2.blur(image_test.copy(), (3, 3))
     ret, image_thresh = cv2.threshold(blur, 150, 255, cv2.THRESH_BINARY_INV)
     return image_thresh
 
 
-def contours_create(image_thresh, image_test):  # create contours of barcode
+def contours_create(image_thresh, image_test):
+    '''
+    :param image_test: image_thresh, image_test
+    This function create contours of barcode.
+    :return: Function return variable barzones which draw rectangle on top of the barcode.
+
+    '''
+
     contours, hierarchy = cv2.findContours(image_thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     perimeter = np.array([])  # create array of perimeters
     for item in contours:
@@ -61,6 +78,7 @@ def contours_create(image_thresh, image_test):  # create contours of barcode
 
 
 def main_algorithm(**kwargs):
+    '''Main algoritm'''
     path_to_image = kwargs['path']
     image_original = read_photo(path_to_image)
     fil = filter_image(image_original)
