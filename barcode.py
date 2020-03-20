@@ -5,7 +5,7 @@ import os  # import pac. and lib.
 import sys
 import cv2
 import cProfile
-import re
+import timeit
 
 import numpy as np
 
@@ -93,7 +93,7 @@ def main_algorithm(**kwargs):
         cv2.waitKey(0)
         cv2.destroyAllWindows()
     elif key == 't':
-        cProfile.run('re.compile("main_algorithm")')
+        print("function execution time is - " + str(timeit.timeit( "main_algorithm", setup="from __main__ import main_algorithm", number=1)))
 
 
 if __name__ == '__main__':
@@ -112,7 +112,7 @@ if __name__ == '__main__':
                 try:
                     path_to_save = 'photo/save/out.png'
                 except:
-                    print('use default')
+                    print('Error')
 
 
 
