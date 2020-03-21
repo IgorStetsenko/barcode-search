@@ -7,5 +7,5 @@ python3 barcode.py photo/1.png i
 where^:
 o - save image
 i - show image
-t - time work of programm
+t - time work of main algoritm
 
